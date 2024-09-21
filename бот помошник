@@ -1,0 +1,2463 @@
+import telebot
+from telebot import types
+import requests
+
+
+# Замените 'YOUR_TELEGRAM_BOT_TOKEN' на токен вашего бота
+TOKEN = '7412317351:AAE9efWRzzt4QJqCxIIQMAppExBvIgvqHhs'
+bot = telebot.TeleBot(TOKEN)
+
+# Функция для отправки изображения из URL
+def send_image_from_url(chat_id, image_url):
+    try:
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            bot.send_photo(chat_id, response.content)
+        else:
+            bot.send_message(chat_id, "Не удалось получить изображение.")
+    except Exception as e:
+        bot.send_message(chat_id, f"Возникла ошибка: {str(e)}")
+
+
+
+# Обработчик команды /start
+@bot.message_handler(commands=['start'])
+def start(message):
+    # Создаем клавиатуру с кнопкой "Запуск бота"
+    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button_start = types.KeyboardButton("Запуск бота")
+    keyboard.add(button_start)
+
+    bot.send_message(message.chat.id, "Добро пожаловать! Нажмите на кнопку ниже для запуска:", reply_markup=keyboard)
+
+
+# Обработчик всех текстовых сообщений
+@bot.message_handler(func=lambda message: True)
+def echo_all(message):
+    if message.text == "Запуск бота":
+        # Создаем клавиатуру с кнопкой "Техкарты"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("Техкарты")
+        keyboard.add(button)
+
+        bot.send_message(message.chat.id, "Бот запущен! Нажмите на кнопку ниже:", reply_markup=keyboard)
+
+    elif message.text == "Техкарты":
+        bot.send_message(message.chat.id, "Вы нажали кнопку!")
+
+        # Создаем новую клавиатуру с 4 кнопками для подкаталогов
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton("ТО-5в")
+        button2 = types.KeyboardButton("ТО-3")
+        button3 = types.KeyboardButton("ТО-2")
+        button4 = types.KeyboardButton("ТР-1")
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button1, button2, button3, button4, button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "ТО-5в":
+        # Создаем новую клавиатуру с кнопкой "Кузовное оборудование" и кнопками для переключения страниц
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_body = types.KeyboardButton("Кузовное оборудование")
+        button_page1 = types.KeyboardButton("Торсионный стабилизатор")
+        button_page2 = types.KeyboardButton("Входной дроссель ДВ-35М1")
+        button_page3 = types.KeyboardButton("Тележки 68-4115 и 68-4116")
+        button_page4 = types.KeyboardButton("Аккумуляторная баттарея")
+        button_page5 = types.KeyboardButton("Быстродействующий выключатель UR26-64T")
+        button_page6 = types.KeyboardButton("дверь сдвижная туалета")
+        button_page7 = types.KeyboardButton("Токоотвод УТ-02 У2")
+        button_page8 = types.KeyboardButton("Токоприемник ТА 20-СЭТ 160 1400")
+        button_page9 = types.KeyboardButton("Наружные боковые двери кабины машиниста")
+        button_page10 = types.KeyboardButton("Гребнесмазыватель АГС 9")
+        button_page11 = types.KeyboardButton("Энергопоглащающее устр-во Scharfenberg 520 014")
+        button_page12 = types.KeyboardButton("Межвагонная сцепка 520 012")
+        button_page13 = types.KeyboardButton("Автосцепка 520 011")
+        button_page14 = types.KeyboardButton("Полуавтоматическая сцепка 1049567")
+        button_page15 = types.KeyboardButton("Калорифер кабины машиниста")
+        button_page16 = types.KeyboardButton("Двери наружные прислонно-сдвижного типа")
+        button_page17 = types.KeyboardButton( "Тяговые двигатели ДТА-380У1")
+        button_page18 = types.KeyboardButton( "ЭКОТОЛ-В")
+        button_page19 = types.KeyboardButton( "Клинопакетная муфта KPK-R")
+        button_page20 = types.KeyboardButton("Межвагонная сцепка ТМ152")
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_body, button_back, button_page1, button_page2, button_page3, button_page4, button_page5, button_page6, button_page7, button_page8, button_page9, button_page10, button_page11, button_page12, button_page13, button_page14, button_page15, button_page16, button_page17, button_page18, button_page19, button_page20)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "ТО-2":
+        # Создаем новую клавиатуру с кнопкой "Кузовное оборудование" и кнопками для переключения страниц
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_body = types.KeyboardButton("Кузовное_оборудование")
+        button_page1 = types.KeyboardButton("Торсионный_стабилизатор")
+        button_page2 = types.KeyboardButton("Входной_дроссель ДВ-35М1")
+        button_page3 = types.KeyboardButton("Тележки_68-4115 и 68-4116")
+        button_page6 = types.KeyboardButton("дверь_сдвижная туалета")
+        button_page7 = types.KeyboardButton("Токоотвод_УТ-02 У2")
+        button_page8 = types.KeyboardButton("Токоприемник_ТА 20-СЭТ 160 1400")
+        button_page9 = types.KeyboardButton("Наружные_боковые двери кабины машиниста")
+        button_page10 = types.KeyboardButton("Гребнесмазыватель_АГС 9")
+        button_page14 = types.KeyboardButton("Полуавтоматическая_сцепка 1049567")
+        button_page16 = types.KeyboardButton("Двери_наружные прислонно-сдвижного типа")
+        button_page18 = types.KeyboardButton("ЭКОТОЛ-В_")
+        button_page20 = types.KeyboardButton("Дросель радио-помех")
+        button_page21 = types.KeyboardButton("Локомотивный комплекс видео-аудио регистрации КВАРЦ-М2")
+        button_page22 = types.KeyboardButton("Преобразователя статического тягового ПСТ-1200")
+        button_page23 = types.KeyboardButton("Преобразователя статического тягового ПСТ-175")
+        button_page24 = types.KeyboardButton("Блок")
+        button_page25 = types.KeyboardButton("Высовольтные ящики")
+        button_page26 = types.KeyboardButton("Прожектарная установка УПЖ-2")
+        button_page27 = types.KeyboardButton("Радиостанция РЛСМ-10-66.02 и РЛСМ-10-11-Д-03-1")
+        button_page28 = types.KeyboardButton("Огнестойкая дверь-1")
+        button_page29 = types.KeyboardButton("Моторно-редукторный блок")
+        button_page30 = types.KeyboardButton("Половины межвагонных сцепок Scharfenberg")
+        button_page31 = types.KeyboardButton("Автосцепка Scharfenberg 520.011")
+        button_page32 = types.KeyboardButton("Мегалит")
+        button_page33 = types.KeyboardButton("СОК КМ")
+        button_page34 = types.KeyboardButton("Микроклимата Тракс")
+        button_page35 = types.KeyboardButton("Микроклимата ГОРИЗОНТ")
+        button_page36 = types.KeyboardButton("Механизм носового обтекателя")
+        button_page37 = types.KeyboardButton("Пневморессор")
+        button_page38 = types.KeyboardButton("Рамы тележек")
+        button_page39 = types.KeyboardButton("Межвагонная сцепка ТМ152")
+        button_page40 = types.KeyboardButton("ПСН-200-01-У1")
+        button_page41 = types.KeyboardButton("Агрегата компрессорного поршневого безмасляного АКПБ 0,070,7 Л У1")
+        button_page42 = types.KeyboardButton("Компрессорная установка-выход")
+        button_page43 = types.KeyboardButton("Тифон Свисток")
+        button_page44 = types.KeyboardButton("Пневматическое оборудование")
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_body, button_back, button_page1, button_page2, button_page3,
+                     button_page6, button_page7, button_page8, button_page9, button_page10,
+                     button_page14, button_page16,
+                     button_page18, button_page20, button_page21,button_page22, button_page23, button_page24,
+                     button_page25, button_page26, button_page27, button_page28, button_page29, button_page30, button_page31,
+                     button_page32, button_page33, button_page34,button_page35, button_page36, button_page37, button_page38, button_page39,
+                     button_page40, button_page41, button_page42 , button_page43, button_page44)
+
+
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "ТО-3":
+        # Создаем новую клавиатуру с кнопкой "Кузовное оборудование" и кнопками для переключения страниц
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_body = types.KeyboardButton("Кузовное оборудование")
+        button_page1 = types.KeyboardButton("Торсионный стабилизатор")
+        button_page2 = types.KeyboardButton("Входной дроссель ДВ-35М1")
+        button_page3 = types.KeyboardButton("Тележки 68-4115 и 68-4116")
+        button_page4 = types.KeyboardButton("Аккумуляторная баттарея")
+        button_page5 = types.KeyboardButton("Быстродействующий выключатель UR26-64T")
+        button_page6 = types.KeyboardButton("дверь сдвижная туалета")
+        button_page7 = types.KeyboardButton("Токоотвод УТ-02 У2")
+        button_page8 = types.KeyboardButton("Токоприемник ТА 20-СЭТ 160 1400")
+        button_page9 = types.KeyboardButton("Наружные боковые двери кабины машиниста")
+        button_page10 = types.KeyboardButton("Гребнесмазыватель АГС 9")
+        button_page11 = types.KeyboardButton("Энергопоглащающее устр-во Scharfenberg 520 014")
+        button_page12 = types.KeyboardButton(" Межвагонная сцепка 520 012")
+        button_page13 = types.KeyboardButton("Автосцепка 520 011")
+        button_page14 = types.KeyboardButton("Полуавтоматическая сцепка 1049567")
+        button_page15 = types.KeyboardButton("Калорифер кабины машиниста")
+        button_page16 = types.KeyboardButton("Двери наружные прислонно-сдвижного типа")
+        button_page17 = types.KeyboardButton("Тяговые двигатели ДТА-380У1")
+        button_page18 = types.KeyboardButton("ЭКОТОЛ-В")
+        button_page19 = types.KeyboardButton("Клинопакетная муфта KPK-R")
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_body, button_back, button_page1, button_page2, button_page3, button_page4, button_page5,
+                     button_page6, button_page7, button_page8, button_page9, button_page10, button_page11,
+                     button_page12, button_page13, button_page14, button_page15, button_page16, button_page17,
+                     button_page18, button_page19)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "ТР-1":
+        # Создаем новую клавиатуру с кнопкой "Кузовное оборудование" и кнопками для переключения страниц
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_body = types.KeyboardButton("Кузовное оборудование")
+        button_page1 = types.KeyboardButton("Торсионный стабилизатор")
+        button_page2 = types.KeyboardButton("Входной дроссель ДВ-35М1")
+        button_page3 = types.KeyboardButton("Тележки 68-4115 и 68-4116")
+        button_page4 = types.KeyboardButton("Аккумуляторная баттарея")
+        button_page5 = types.KeyboardButton("Быстродействующий выключатель UR26-64T")
+        button_page6 = types.KeyboardButton("дверь сдвижная туалета")
+        button_page7 = types.KeyboardButton("Токоотвод УТ-02 У2")
+        button_page8 = types.KeyboardButton("Токоприемник ТА 20-СЭТ 160 1400")
+        button_page9 = types.KeyboardButton("Наружные боковые двери кабины машиниста")
+        button_page10 = types.KeyboardButton("Гребнесмазыватель АГС 9")
+        button_page11 = types.KeyboardButton("Энергопоглащающее устр-во Scharfenberg 520 014")
+        button_page12 = types.KeyboardButton(" Межвагонная сцепка 520 012")
+        button_page13 = types.KeyboardButton("Автосцепка 520 011")
+        button_page14 = types.KeyboardButton("Полуавтоматическая сцепка 1049567")
+        button_page15 = types.KeyboardButton("Калорифер кабины машиниста")
+        button_page16 = types.KeyboardButton("Двери наружные прислонно-сдвижного типа")
+        button_page17 = types.KeyboardButton("Тяговые двигатели ДТА-380У1")
+        button_page18 = types.KeyboardButton("ЭКОТОЛ-В")
+        button_page19 = types.KeyboardButton("Клинопакетная муфта KPK-R")
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_body, button_back, button_page1, button_page2, button_page3, button_page4, button_page5,
+                     button_page6, button_page7, button_page8, button_page9, button_page10, button_page11,
+                     button_page12, button_page13, button_page14, button_page15, button_page16, button_page17,
+                     button_page18, button_page19)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Кузовное оборудование":
+
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1TuTAZCFilR0yejRNQ26ZQ7VodwGBdJD_',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1cj2x5hHE545QBGrOOEskNOY-bdodPMFl',
+
+            'https://drive.google.com/uc?export=view&id=15XWbCf37DA2DiMtpH-8hwMTWJOGoOiTX',
+
+            'https://drive.google.com/uc?export=view&id=15MZdKd1TqJPK7drniKTAWl4lIIzA331V',
+
+            'https://drive.google.com/uc?export=view&id=14-fVl0bv-b5avPecqHvis-3XofiXZlkR'
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "Техкарты"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("Техкарты")
+        keyboard.add(button)
+
+        bot.send_message(message.chat.id, "Вы вернулись в главное меню:", reply_markup=keyboard)
+
+    elif message.text == "Наружные боковые двери кабины машиниста":
+
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1QK32BWDTjkVtPT5Q_-xJ9fr3Lmy_ti9D',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1QEp4wRsQhaGd0HuttBwn2zedIcPdeY81',
+
+            'https://drive.google.com/uc?export=view&id=165TSO9mHLMtizivdQxjeDvfMRnqixRBi',
+
+            'https://drive.google.com/uc?export=view&id=1lAz6_gDCQdG1zGLHfhZBSBjxqHpGJmnT',
+
+            'https://drive.google.com/uc?export=view&id=1ulQm1knh0mOrj6hwYsJSKOWyckAPcp80',
+
+            'https://drive.google.com/uc?export=view&id=1K1J77iS9c_eD2ngFSGsb4y_rGCI2IIEg',
+
+            'https://drive.google.com/uc?export=view&id=1ZZwNd4QTljoSnLq-ymhfQ80PUegtyLRl',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+ # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "Аккумуляторная баттарея":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1wfbjyg4J_VnfQsV0ahgENlpaypOlji5n',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1lFc4k3lFSvrLnvm7H_SS2pjas1rCMNsj',
+
+            'https://drive.google.com/uc?export=view&id=1LhyI2_qwOo0_Us-fLAGDlnz-IzMYT7eE',
+
+            'https://drive.google.com/uc?export=view&id=1G8L2P_PSqPVz_KIXPfNmVlA2w2dZUo6o',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+
+    elif message.text == "Токоотвод УТ-02 У2":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1QgocQV7O-eFuoRtgnCOmnXr0MfdTj-aT',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1JkMZyhu71YgQ5C2nI98sINqf55l-6brJ',
+
+            'https://drive.google.com/uc?export=view&id=10BY6IPfJS9E_SN2B0qZX_aSQbFWzEr-6',
+
+            'https://drive.google.com/uc?export=view&id=1-mfZ6bXLHyT1uZ8iSdmDHNdDMnfCWt34',
+
+            'https://drive.google.com/uc?export=view&id=1bSL7DGCkr0wpfSJTvos9iJa-8tdAfI1S',
+
+            'https://drive.google.com/uc?export=view&id=1kTYPYZqwyd-TO_1hfa3CwiBg5iOVhvpI',
+
+            'https://drive.google.com/uc?export=view&id=1DjjdsciUAZDw02PApj1--P2f3MWgarUT',
+
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+
+    elif message.text == "ЭКОТОЛ-В":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1xAptEhuYexRxHma0JnMFe5sMJY92QhhS',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1vb0fWbH3ylIpxib7oznWgw78oStlMiXJ',
+
+            'https://drive.google.com/uc?export=view&id=1TeBUhN9Efy2qHNZpHWw4pl2Bfh9K3uIs',
+
+            'https://drive.google.com/uc?export=view&id=1yb1XLQ97h1jCKTLxigbHvymAcvRAAyM4',
+
+            'https://drive.google.com/uc?export=view&id=1iXPHvkM4Io3MeI_aKx_IA6DMZO-5hB8m',
+
+            'https://drive.google.com/uc?export=view&id=1gBthLU5sT5dwrMx6JfgyUXEJyW0mjDJZ',
+
+            'https://drive.google.com/uc?export=view&id=1SEH57ttuEWSdo9Yqx4LQgHiNjtSUAOyT',
+
+            'https://drive.google.com/uc?export=view&id=1QNuHg1l9mTnNgpboKltmc74_X_oKrx_i',
+
+            'https://drive.google.com/uc?export=view&id=1UC3okhujJqaWIyjIKeddAfYfGTOKfwYi',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+
+
+    elif message.text == "Быстродействующий выключатель UR26-64T":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=12sZCFC4z4qAY7ky-DVC1HnYohPqczrZG',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1Eald7WoiifBeHCUWhkXhOYQJ8gH0LyU5',
+
+            'https://drive.google.com/uc?export=view&id=1YEx47kvoHi5BTQ9w_OAz_3ZR9Sy6GWT4',
+
+            'https://drive.google.com/uc?export=view&id=1pXHHMq69XXCTFQ-qK2yKCsf_7Iafiuy_',
+
+              'https://drive.google.com/uc?export=view&id=1dW39hr0fej5b0VDr_o0LZ7K1W6HYSkqC',
+
+            'https://drive.google.com/uc?export=view&id=1LM68oMwT0dwRA69Rcfvfl2YMzui8vRkp',
+
+            'https://drive.google.com/uc?export=view&id=1-up9ooBUTnJLlYLtUXG7uaf8WNtvhjNQ',
+
+            'https://drive.google.com/uc?export=view&id=1qnxuOFD2blV5RU94p-rbpStKXZgMAzbC',
+
+            'https://drive.google.com/uc?export=view&id=1wWO5MTKre2asCut9YzfImeO5QS3AiiHN',
+
+            'https://drive.google.com/uc?export=view&id=1Ce6BAI15Q40U2yi_5pkK99-dYvSW051F',
+
+            'https://drive.google.com/uc?export=view&id=1TSPlDrTrM53C-iVK06ilePTDfxm6n_LK',
+
+            'https://drive.google.com/uc?export=view&id=1S5j3FX4EQne7zFfCJme8_-pkU7W_gXvS',
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "Входной дроссель ДВ-35М1" :
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=196QjK-Wf2nR6XperKXVC4Vkni4H6ixdy',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1nr7O7YxS6mHKVhoFgWD9N7Q0riNKTdBp',
+
+            'https://drive.google.com/uc?export=view&id=1ibUpNTR7youUfEEZ8b-kx2eQZaY7o4x7',
+
+            'https://drive.google.com/uc?export=view&id=1zsatlHjdcSZlFalqx5mR9Xar96XE0s7j',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+    elif message.text == "Гребнесмазыватель АГС 9":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1N0fwhq3_43_x0Z_9gYPIXfyFWuyl7JVC',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1J0RmA36J0hupwlBg7MVjsXMao0t6wZKp',
+
+            'https://drive.google.com/uc?export=view&id=16_HxoVN994YxIRcuA6QweK2TKJbDJryb',
+
+            'https://drive.google.com/uc?export=view&id=12FZkdEKg9tzgH6YbuZdfFl01JzFglW_A',
+
+            'https://drive.google.com/uc?export=view&id=1TTBZFGmFu48MlHdOdGS8ft951SsHvUSX',
+
+            'https://drive.google.com/uc?export=view&id=1suqPc6tiEL6HQDcjhfz22J3qLs2Sq5Yp',
+
+            'https://drive.google.com/uc?export=view&id=1l6vsUJ6CIzn3Mrs9UN9fQQhPGCv6XHvQ',
+
+            'https://drive.google.com/uc?export=view&id=1zuJ02odF_3LMR-zViFgGnTzGbmeCWcdg',
+
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "дверь сдвижная туалета":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1JUucfSeM-lLieksxoZSBMHAmvgPW6yCh',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=13CRNCqhBa5HXsMbO_g9BhW8fK7qbUNJA',
+
+            'https://drive.google.com/uc?export=view&id=1X7_XMy7FZ4wm4MMzAbosIhZg_RdWGtcp',
+
+            'https://drive.google.com/uc?export=view&id=1vwWz0u6X9Bzf7fylsgus5pizXJVfqKOd',
+
+            'https://drive.google.com/uc?export=view&id=1CpOGtJvs2B-bvAt0qjDtHxmhT-PoaKVL',
+
+            'https://drive.google.com/uc?export=view&id=1BgyEAShAu5AzqSp39H_zpOEm7qeeqAh1',
+
+            'https://drive.google.com/uc?export=view&id=1WE-8uihMEOHxN_PAw4dCdAxq78omwpHu',
+
+            'https://drive.google.com/uc?export=view&id=1o5_DyFZ2YVxsd6jDm2M3GLiGmGoUFj1K',
+
+            'https://drive.google.com/uc?export=view&id=1ejL4oLA4bK3aOIljJj4FmyHKITRqFpYB',
+
+            'https://drive.google.com/uc?export=view&id=1Ajd16bv-rXl3LQw_1D7Wim8GitvXWgyv',
+
+            'https://drive.google.com/uc?export=view&id=12tHswK_w5u7rJgtMtd5wnq_Z8XOVDif6',
+
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "Токоприемник ТА 20-СЭТ 160 1400":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1fSBLY6GmQPq97ynbeyvq2Gz5hMey5_yD',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=12aw_pAXehCZQhMtHvdmAd2sP6Us5gZXD',
+
+            'https://drive.google.com/uc?export=view&id=18vL1VUOZnq9-CHz2Ag4FiHp_VI0jfPjb',
+
+            'https://drive.google.com/uc?export=view&id=1VwP0yvZDWmr1nvNjs5pzt1wqNnZKy9p1',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "Тележки 68-4115 и 68-4116":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1bhB_ej2-hbqr59bSG6Jv1D1ZJVN3_UZ9',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1eoHg9kugt42MlC72w-BdRuuDfF6DiMSP',
+
+            'https://drive.google.com/uc?export=view&id=1vUh_uFNZ6IcQnSHGh76cRL6K68gbHwOc',
+
+            'https://drive.google.com/uc?export=view&id=1wkjcpoInbpZ7UQBDxQ11QewVDSavumHk',
+
+            'https://drive.google.com/uc?export=view&id=1U4l-Rf1od6Cpt23X-joZLRj2CLLoUfE8',
+
+            'https://drive.google.com/uc?export=view&id=1EOcmCZhSJSOhu_C9SjXQodTvstBGtsOQ',
+
+            'https://drive.google.com/uc?export=view&id=1Jfl2KxTeP49mbX8ZjMVCJQbqY1xBBXfY',
+
+            'https://drive.google.com/uc?export=view&id=19IlIRBkiAVbsWHFkzGkQOH4yyl9xWsX8',
+
+            'https://drive.google.com/uc?export=view&id=13GJeb1TN4wzFHCavbrKzKt3bwPwTC7TL',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "Торсионный стабилизатор":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=16wIk4_Bd95IPzbDkRuuxvMisFzvNW4-f',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1f2zJxFxW5GTWMTdfyJCDlD89-n7ztvpB',
+
+            'https://drive.google.com/uc?export=view&id=1G8sGAgKYfKBFjN6knTxPj8kW-jbVJ8Y-',
+
+            'https://drive.google.com/uc?export=view&id=16opxrRXvZS1jsProPRpRXjNd4IPrCnLD',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "Клинопакетная муфта KPK-R":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1HB3a3S3BVmYZsnla2AA7Sn8m20XUr_Rk',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1hi8OCe_0L785R_Rdd74HbiI14ro1rg_n',
+
+            'https://drive.google.com/uc?export=view&id=1LA3ImOnJkYt7vDUdHb8U_hDGGwdtcJjr',
+
+            'https://drive.google.com/uc?export=view&id=1Pmp2VJU32h_74PRU6UPn6FMU57J_-5Oz',
+
+            'https://drive.google.com/uc?export=view&id=1EmaykVT8XXj4KXIp7TdT8yNx4wCX____',
+
+            'https://drive.google.com/uc?export=view&id=1aXmNDwM5l5yfkvZxJGQbA2CNfCdIQH8T',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Назад":
+        # Создаем клавиатуру с кнопкой "ТО-5В"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "Тяговые двигатели ДТА-380У1":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1OAVzJXEAqT0hArUyLRa-AHbi9LocBjMx',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1YucPO-RxJI4jXZfHkIQbY7T5bBlFiqjq',
+
+            'https://drive.google.com/uc?export=view&id=1XrqeVjiGuO-phWwsMWqI8mT3DFVmi004',
+
+            'https://drive.google.com/uc?export=view&id=1w5Oczv7A3Rgx9Hx-rESmAXbAN_k7HjA8',
+
+            'https://drive.google.com/uc?export=view&id=1fI2-l8aYUncB1v6OG4e2E_L9k5qbz9aA',
+
+            'https://drive.google.com/uc?export=view&id=1fgsS4ZSAWB9rxGI9BkB3J96KS45waavF',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Энергопоглащающее устр-во Scharfenberg 520 014":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1eFncF3jBPYuzHmucwcij1UULPjxOoGxL',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1qjz4ehph40KSuOCOrGUVX9DxPkd94c8v',
+
+            'https://drive.google.com/uc?export=view&id=1IjONxyzBO8mPmJqQ7wyNVSlHIOGa7Qq8',
+
+            'https://drive.google.com/uc?export=view&id=1ac0QuPtfisGR1kyykukP5S3lUW5kK-mR',
+
+            'https://drive.google.com/uc?export=view&id=1uzjJtVST-AoFAn3d0tPv_KI9Z9NyJL_a',
+
+            'https://drive.google.com/uc?export=view&id=1XCqfrd_xLp7PcxKsO9lYqI1vFQF0VyRy',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+
+    elif message.text == "Калорифер кабины машиниста":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1O85CMmpYkKCDl3KKWjTMQZ3B6fRaRcWo',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1qfHnDitvBB5ZHjoFI_BW-TdUn3PkQibS',
+
+            'https://drive.google.com/uc?export=view&id=1emC-wx1lMDUWIPylO0QyhF5AWRxIJHON',
+
+            'https://drive.google.com/uc?export=view&id=1VZFpSejQdt5JOzrUI7VynO3lSfeeau_0',
+
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+
+    elif message.text == "Межвагонная сцепка ТМ152":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1C-w-p4jQvJP7HomwDqvt7-0VFl6tiEVL',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1K6mt05v26q1K_-5Ct3sznLge4nlx5NKc',
+
+            'https://drive.google.com/uc?export=view&id=16oxbgW1uLPfF4Lx1LuhVi3W-ZqtEsCFP',
+
+            'https://drive.google.com/uc?export=view&id=1-1AzFmpYTPK_DGbdM2IXqNYi8vF8k0ap',
+
+            'https://drive.google.com/uc?export=view&id=15hQqg849LYm6V1ZM--9YuxMmoRSnJnSf',
+
+            'https://drive.google.com/uc?export=view&id=1tHNIqVaHUAFwYKejZfXEDw__9iI8DvZV',
+
+            'https://drive.google.com/uc?export=view&id=1aESXmbml7lG9h_SVsWc1hZhiEznwOxmn',
+
+            'https://drive.google.com/uc?export=view&id=1MHlA8-zOct5qSb_AzvJLtr9KUPibHqpc',
+
+
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Автосцепка 520 011":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1N6i1ZiOXiChWPzQ4cR3NwYd-ieHOuV2s',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1xZZBoPnzDgNp0rnrMdKY1fa0wZR9gOAI',
+
+            'https://drive.google.com/uc?export=view&id=1yUxwyZQ4mMiuIcywkrcoFZUZn3IJu_1L',
+
+            'https://drive.google.com/uc?export=view&id=18oVQlaMM8a0qDe1_uKaSpdGTxppwzKBR',
+
+            'https://drive.google.com/uc?export=view&id=1lTJ_-SM3vjQSFLEvq3PijohpAl_gKGw3',
+
+            'https://drive.google.com/uc?export=view&id=1YFe15PAAGB8hOFHJFNmm9CbEIA7Zy1D2',
+
+            'https://drive.google.com/uc?export=view&id=1W_A7stc5jU0NUOpoI0WvZmCqjZW5bk83',
+
+            'https://drive.google.com/uc?export=view&id=1YRf4ej9qkOnM2FUJgDxCplQZRX8V0d55',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Полуавтоматическая сцепка 1049567":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1kq16b5b52v23QulmF7Yo6QWSUprHKJcC',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1iPYwm0Ej0P5RlS2isPRfNOC6-87jSU5K',
+
+            'https://drive.google.com/uc?export=view&id=13ply2pK_KLFnPl11IMqYtqireV_48soh',
+
+            'https://drive.google.com/uc?export=view&id=1-uvY_DgYILDdKet9XABgDzB9epULGdqC',
+
+            'https://drive.google.com/uc?export=view&id=1fYQH_gMtof66_wUAlwhJw9GFbXBvPqh5',
+
+            'https://drive.google.com/uc?export=view&id=1IjfAilMM-DUq8SmT2oir06MCyGuGEk_c',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Межвагонная сцепка 520 012":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1E4iPDnXSX4RtVsWKY1LYUoF06q7eDB8S',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1_72zciuPMlZILnXiDTslCDrtfYHJzI3V',
+
+            'https://drive.google.com/uc?export=view&id=15czlycULI0ky4d11_K5xOAG2ERrZLgOM',
+
+            'https://drive.google.com/uc?export=view&id=1R0NZeUlZkceI8JmW9kT51mNvneohNbcg',
+
+            'https://drive.google.com/uc?export=view&id=1-P5IkdplB1EzC7x52FPXvpreIeUlp63Q',
+
+            'https://drive.google.com/uc?export=view&id=1UlNmcW98EU3HDSDf1uTV-8mcZYcWa1Fv',
+
+            'https://drive.google.com/uc?export=view&id=1uIoaEUoWq22Yl3nHzgenoABdgr5XvJz2',
+
+            'https://drive.google.com/uc?export=view&id=1uIoaEUoWq22Yl3nHzgenoABdgr5XvJz2',
+
+            'https://drive.google.com/uc?export=view&id=1r4qguQowsWUlhgOrwqls6nb26YwTug95',
+
+            'https://drive.google.com/uc?export=view&id=15eB_MFSXXjC0njWdLX6ydGkrlTLt0Sqm',
+
+            'https://drive.google.com/uc?export=view&id=1T-3SF_CGzs0YqYMP5gmBhPz-rEudG2Qs',
+
+            'https://drive.google.com/uc?export=view&id=1DnQRi3nzrV0XCe_ZZH5HG628zT0oMcQc',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Двери наружные прислонно-сдвижного типа":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1Sauq0RxIqOeb084SHtrwbbwr-1YS__j3',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1jUXNUwBTTcUinvCDeXAs4CmINnt-sVRm',
+
+            'https://drive.google.com/uc?export=view&id=1JvFMtjWqrPlKQ9a8QrS4dnRJ82-a3lJN',
+
+            'https://drive.google.com/uc?export=view&id=1KkXbDchp-vp7HvqA4jkf9bRcugguNKH-',
+
+            'https://drive.google.com/uc?export=view&id=1uHuAPe6nFcH0YAVxM9HMBCt9fM2CcVtQ',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1Gbgy58y21N5vQI-CqZ37Cegj-rY1O6yQ',
+
+            'https://drive.google.com/uc?export=view&id=1ehRFSLNuydolKUaiMUqS3tEt7ecX3SVD',
+
+            'https://drive.google.com/uc?export=view&id=1XS4U2fVhNSvn6oWeuYdoiTxao71099Rt',
+
+            'https://drive.google.com/uc?export=view&id=1K0D2lryMfyecgy27ct6tU1Jn8MPfLHeV',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1MGYb0i-CDfwK1eg5D1PUBMyyhZxyd589',
+
+            'https://drive.google.com/uc?export=view&id=1ATbPokx0j8RNjyXKZauV3O338NzAWD2a',
+
+            'https://drive.google.com/uc?export=view&id=1ATbPokx0j8RNjyXKZauV3O338NzAWD2a',
+
+            'https://drive.google.com/uc?export=view&id=1kkCk_Rcrj3vhWtG5FwbLyJOwePX9-rW3',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=135TlaLYWeICzbntBiSRvibFGxkGCSPNl',
+
+            'https://drive.google.com/uc?export=view&id=1OtcNkUId4qDmYQwO8HIUB0lSzCAOeERC',
+
+            'https://drive.google.com/uc?export=view&id=1MFGtIrctthHlq5nXoqjlax5FRNJVStp-',
+
+            'https://drive.google.com/uc?export=view&id=1UFtjbgP101yvglu_e8TOtmhsNEtjWoNs',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1t6WihachYopO84_JhZ9dqJcTClOMLYId',
+
+            'https://drive.google.com/uc?export=view&id=19DDivAzKSg--NxYGCPpONbHgL0B--C7q',
+
+            'https://drive.google.com/uc?export=view&id=1MjwspN7FUYJRTAs4SRFOi7cfqdbztdX3',
+
+            'https://drive.google.com/uc?export=view&id=10ijVp3Nv1sm9dRtK_pACGW3qo14qPMB9',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1cFcU_kYYJHDn7sf3kAVqkbOKo3BJuud_',
+
+            'https://drive.google.com/uc?export=view&id=1pLmVibeyum3715G5nntssKeoR0OBoIZo',
+
+            'https://drive.google.com/uc?export=view&id=1OZbe55ye-ZXRvtT5arwUeswY27Oz7ncK',
+
+            'https://drive.google.com/uc?export=view&id=1lkPCRG4rGy9uSXmEJyF3Ih5_am8yxPbV',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1XII9H5bj_KQl9NilZlxEPTm7-jCifMGd',
+
+            'https://drive.google.com/uc?export=view&id=1djUuQmjlHZ1eGMkgP4dUkI2CTOcU_mMu',
+
+            'https://drive.google.com/uc?export=view&id=12S3gUik7bAw9lm0vpw8vSBDqMjY7niR0',
+
+            'https://drive.google.com/uc?export=view&id=1HLocVON89Y9CE1iXijFfhHGdEL6_czEb',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=13Qu4tKeWHvSNnWziI-5gyLlP5T4RbUv3',
+
+            'https://drive.google.com/uc?export=view&id=1Pouj3aX9z5w6mxZof_hbDtGr5NNMnDls',
+
+            'https://drive.google.com/uc?export=view&id=1mqRD2Ba8CAk44dHy5YKjxJKuXqUHOt_p',
+
+            'https://drive.google.com/uc?export=view&id=1RPOgp0N4lxc3mJH2GRSThJ3V_5ka2JJ1',
+
+            'https://drive.google.com/uc?export=view&id=1DBvAjZ3-1dU5ID_9fz9I34dfDge3LpuG',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button = types.KeyboardButton("ТО-5В")
+        keyboard.add(button)
+
+    elif message.text == "Назад":
+         # Создаем клавиатуру с кнопкой "ТО-5В"
+        bot.send_message(message.chat.id, "Пожалуйста, нажмите на кнопку.")
+
+    elif message.text == "Токоприемник_ТА 20-СЭТ 160 1400":
+
+         # Прямые ссылки на изображения с Google Drive
+
+         urls = [
+
+             'https://drive.google.com/uc?export=view&id=13oQ2cYzQNKjpn9dQiPUCNxfVN398QbQ9',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=1QSyTUlR4KEPeKYW__LqjWdMVprzGijPN',
+
+             'https://drive.google.com/uc?export=view&id=1CkKeJyY3JX60ha2qrR7GrpEs4Djls9wy',
+
+             'https://drive.google.com/uc?export=view&id=1bpB9JXJFCcDHbtYrH23uQlVKFv05KoQK',
+
+             'https://drive.google.com/uc?export=view&id=1pOLoI2XZyLpPJHyyBrLWD3DFuM0j9Pa-',
+
+             'https://drive.google.com/uc?export=view&id=1m2BEF43QBVNDABQzTI4jx84STeG_MF78',
+
+             'https://drive.google.com/uc?export=view&id=1cUyIJTmvJkfFpRX0UCNbl_fd5NLAEa6C',
+
+             'https://drive.google.com/uc?export=view&id=1zhqc98zvqQ4WaaxFWAhlYjESSCAr3k4w',
+
+             'https://drive.google.com/uc?export=view&id=1xTy_UYBbia6X8_rIXgOfz5jPwz5jeAOq',
+
+             'https://drive.google.com/uc?export=view&id=1XAfusvCyYIa1WRJzunYmVqD_jjazD_GP',
+
+             'https://drive.google.com/uc?export=view&id=1-C9uKYG7bMS_AiLuPvb8pfd42xgVrXj5',
+
+             'https://drive.google.com/uc?export=view&id=1Xov6eQ28HYi0dd67ZYQn4WovIAbG4Vu7',
+
+             'https://drive.google.com/uc?export=view&id=1O0_PLKaVZpwLVDZ8dFqvlfU2clWxjdx1',
+
+             'https://drive.google.com/uc?export=view&id=1CLfCB1o2at2oVh0jW_9Y2SqXz-2J-05l',
+
+            'https://drive.google.com/uc?export=view&id=1X7G8qTekvOnHey0iHy07s6KIeuJeoJGr',
+
+            'https://drive.google.com/uc?export=view&id=1yKjyzpkFiNTsZ2IFUCT2b5ZuvhNtp9IX',
+
+         ]
+
+         for url in urls:
+             send_image_from_url(message.chat.id, url)
+
+             # Создаем клавиатуру с кнопкой "Назад"
+             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+             button_back = types.KeyboardButton("Назад")
+             keyboard.add(button_back)
+
+             bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Дросель радио-помех":
+
+         # Прямые ссылки на изображения с Google Drive
+
+         urls = [
+
+             'https://drive.google.com/uc?export=view&id=1aEECR8rsCerx34TU2IAkTTpqeutBzNzZ',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=15DPsOkBRyMEUERjzPhzAvZyqDa5kM4cT',
+
+             'https://drive.google.com/uc?export=view&id=1Fj7YioI8p9ORzkbQ1CBoOTXs-pH47poB',
+
+             'https://drive.google.com/uc?export=view&id=1TaOAuqwJOpTvJYJaYinIIJQMAUq9fv9-',
+
+             'https://drive.google.com/uc?export=view&id=1QLFLs4p5q-Keyr2-f2ADqHxn3DylxKbW',
+
+             'https://drive.google.com/uc?export=view&id=1PmXCWJ5w7ETeB17rC4I5QKYZj0zyOMqX',
+         ]
+
+         for url in urls:
+             send_image_from_url(message.chat.id, url)
+
+             # Создаем клавиатуру с кнопкой "Назад"
+             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+             button_back = types.KeyboardButton("Назад")
+             keyboard.add(button_back)
+
+             bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Локомотивный комплекс видео-аудио регистрации КВАРЦ-М2":
+
+         # Прямые ссылки на изображения с Google Drive
+
+         urls = [
+
+             'https://drive.google.com/uc?export=view&id=1eQCU8shB5JmX4sk_IfUP2X0vSX2o42Ok',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=1rGb1JuGLDS9uBGkPZhgW66jtyhbqSfVA',
+
+             'https://drive.google.com/uc?export=view&id=18Kiz6qzcdXPCBFmiPc0YJPNAHVNMXuAm',
+
+             'https://drive.google.com/uc?export=view&id=1XrlF3sEMh8vgPJQdsC55ZjEuqEp2ynxA',
+
+             'https://drive.google.com/uc?export=view&id=1u45u5bviEPMdz4uKFLE4nAH8rJZpxXd6',
+
+
+         ]
+
+         for url in urls:
+             send_image_from_url(message.chat.id, url)
+
+             # Создаем клавиатуру с кнопкой "Назад"
+             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+             button_back = types.KeyboardButton("Назад")
+             keyboard.add(button_back)
+
+             bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Преобразователя статического тягового ПСТ-1200":
+
+         # Прямые ссылки на изображения с Google Drive
+
+         urls = [
+
+             'https://drive.google.com/uc?export=view&id=1FCKvgr93qaXQRzSgTSNoSsF2rI31qeT2',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=1k0ZCtgag3BOcWcEs6_VysCJlokIxqvhI',
+
+             'https://drive.google.com/uc?export=view&id=1UiMMRsC4nNxAGpobbj-7wctRs_ipxkUc',
+
+             'https://drive.google.com/uc?export=view&id=1y8MLwJwv7Z4bbOAvRo_TUNcF3Ukf9IDz',
+
+             'https://drive.google.com/uc?export=view&id=1qb_Oo16OPHyjDKNEZ1xDqdJFrlx6nQgj',
+
+             'https://drive.google.com/uc?export=view&id=1sJZSXobzfwe5ISeGDxK78ymPZS4Je7F_',
+
+         ]
+
+         for url in urls:
+             send_image_from_url(message.chat.id, url)
+
+             # Создаем клавиатуру с кнопкой "Назад"
+             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+             button_back = types.KeyboardButton("Назад")
+             keyboard.add(button_back)
+
+             bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Преобразователя статического тягового ПСТ-175":
+
+         # Прямые ссылки на изображения с Google Drive
+
+         urls = [
+
+             'https://drive.google.com/uc?export=view&id=1EOTR_A78KnKwH4WhUqjGj5Iy_wsMp9nW',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=1pzpdWBatec_xCJdLgRmN1Pc3kpZS2rVY',
+
+             'https://drive.google.com/uc?export=view&id=1zwlr8qG7FWuxKrLy51Os6NYUKdGKgJmx',
+
+             'https://drive.google.com/uc?export=view&id=1q3YGca3fKHx0mYAlV81CUzR4GkL8SdGB',
+
+             'https://drive.google.com/uc?export=view&id=18xitTpEBk99B6w61xn1gldlOn2KfAOxt',
+
+             'https://drive.google.com/uc?export=view&id=1iKu_DZsLcJOdkyqU8aBImaf_efzDmd1I',
+
+         ]
+
+         for url in urls:
+             send_image_from_url(message.chat.id, url)
+
+             # Создаем клавиатуру с кнопкой "Назад"
+             keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+             button_back = types.KeyboardButton("Назад")
+             keyboard.add(button_back)
+
+             bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Блок":
+         # Прямые ссылки на изображения с Google Drive
+
+         urls = [
+
+             'https://drive.google.com/uc?export=view&id=1KsBgyMgO1MaF8I1BsCGk9g-IXzA0PHZd',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=1YtMF1RXGkUK--01QnPH546KGEcWr6Lsm',
+
+             'https://drive.google.com/uc?export=view&id=1QKOd2CwZ9ObBcqfY94mubP9ZxtkyXnDW',
+
+             'https://drive.google.com/uc?export=view&id=1No-o2VcXFQZKBr4XE7GMieZ-yhbxhZok',
+
+             'https://drive.google.com/uc?export=view&id=1dsttt1ZPiPpdUML-uw0LD5hiVgWLbyzs',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=1Y1toEm3P47SuFOVDN-WnQHomMexD9R4g',
+
+             'https://drive.google.com/uc?export=view&id=1QWj1ZzkL6l4A-6zMPIDuDiXS2Qp5xt_4',
+
+             'https://drive.google.com/uc?export=view&id=1rzs-0V73dg2sdAUcn-o3nvv6dZ8UXF2s',
+
+             'https://drive.google.com/uc?export=view&id=1XiG6qkIjl9Getj2JTikMpfnvIwgNsYms',
+
+             'https://drive.google.com/uc?export=view&id=1Ymw87r6qWYhq47y1jKz5f3v3f9YxE7fi',
+
+             'https://drive.google.com/uc?export=view&id=1RYu7tVvUn8WpikmiEP0DWdnepAK5VtvK',
+
+             'https://drive.google.com/uc?export=view&id=1kereSKX93gCpn_jsVs5SuCrw5v6ISAWh',
+
+             'https://drive.google.com/uc?export=view&id=1-hqfWFBad_5eYMiLE0IVpl7hcGfRTvEy',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=1P7Mu5G3D_RmUdNOiAVZ60gLKuVSeeF1o',
+
+             'https://drive.google.com/uc?export=view&id=16idm9e2_BDMXgd1ZXGtm_vc8s9kiWO5R',
+
+             'https://drive.google.com/uc?export=view&id=172keWYFHRszotEHEp-V2nvDZKjGynTYI',
+
+             'https://drive.google.com/uc?export=view&id=1sGODyOcPAhwAYfgACMttmvjEUOFqd9Bh',
+             # Замените на ваши прямые ссылки
+
+             'https://drive.google.com/uc?export=view&id=1mlntFqODZ4UD0o9ZpzxLqmP9Vq6AlTz8',
+
+         ]
+
+         for url in urls:
+             send_image_from_url(message.chat.id, url)
+
+         # Создаем клавиатуру с кнопкой "Назад"
+         keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+         button_back = types.KeyboardButton("Назад")
+         keyboard.add(button_back)
+
+         bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Высовольтные ящики":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1GAEpTFl-5ukJZPk6gRURbUdtXkWi6trl',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1pS0UdY5IWrop1qhAtPBJX7FTHSuQoZbx',
+
+            'https://drive.google.com/uc?export=view&id=1hWbzBBB70D0DigSB_T1pOXF9vA7xWhyw',
+
+            'https://drive.google.com/uc?export=view&id=1KYy8LUld2xiGXr8_3DrYEpeKVBsjtIQ2',
+
+            'https://drive.google.com/uc?export=view&id=1jAp6c3VgVLVTtwdMFzxYaE1xaVOLTQ9y',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1hRTX6T3cOcR3p_TbyuD7Oy_NTUskopyP',
+
+            'https://drive.google.com/uc?export=view&id=1rlArdYZbPO3kPRA2u5Jp-PFp8XTij3T_',
+
+            'https://drive.google.com/uc?export=view&id=1ZCIRBKiclFqt9x2KKXSuMJdJKAZNF2IX',
+
+            'https://drive.google.com/uc?export=view&id=1RkEx5oe1AtFk9HYmOtbFyJtCJGZRpHOj',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1I4dV0rOCb05nTv894Aiya6bwWmWjuoSi',
+
+            'https://drive.google.com/uc?export=view&id=1kAnQqzeFnyf-V0k7CAx1zaaVQlXsO3_a',
+
+            'https://drive.google.com/uc?export=view&id=1KR4SqLaxK7bAXnhIOg3iOfLJsqUEzWYM',
+
+            'https://drive.google.com/uc?export=view&id=1xcZQYAaLz51nWz48O0mtmPl67PFPsS1K',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1iBtgreA-bbEN1Dqh3GjAcjevM_6xNdyr',
+
+            'https://drive.google.com/uc?export=view&id=1cPbBqy2ViMBKQCcyEcB3ZWR4R-s0aK1C',
+
+            'https://drive.google.com/uc?export=view&id=1UaOWlprgXE0Omp2edhXbgo3Azt39Ugqg',
+
+            'https://drive.google.com/uc?export=view&id=1I88vgSB-0c7DQRrr7xsp4iLJcrybk27y',
+            # Замените на ваши прямые ссылки
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Прожектарная установка УПЖ-2":
+
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1gOKaa2AyLbbe7HKwaCDN0-oy3UATvlYk',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1Mu_g7zGUaOBWC_TXhoxq_JopqanvwQi1',
+
+            'https://drive.google.com/uc?export=view&id=1a19JPUMDIcGfAuGWGR3ndCrg6j2uk_Xd',
+
+            'https://drive.google.com/uc?export=view&id=1YjH3hhfsvsqBKchn669Ftq6pxv8Gw-SP',
+
+            'https://drive.google.com/uc?export=view&id=1CnLr04NHEqRqbtlx8-0v8hdcJg0fx6Gd',
+
+            'https://drive.google.com/uc?export=view&id=1D1_WsqiO3flI5Bhz6TDWYrgnt9ifh11e',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Радиостанция РЛСМ-10-66.02 и РЛСМ-10-11-Д-03-1":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1Iae5zHF6QH_UT5LNeeqIuOzdgBvh0KZZ',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=105zc51kKp-AiQKMVFcaYdYksfd-MMTjt',
+
+                'https://drive.google.com/uc?export=view&id=1iVKTixt-sI_fcMGNZtRy_QZKWJ-KySIw',
+
+                'https://drive.google.com/uc?export=view&id=1tvm3U_tkKjZL7jUmqogxQkL6f8OsLeWH',
+
+                'https://drive.google.com/uc?export=view&id=12Wt1tOHbthufObWNMoaN08pUJcg3-bGL',
+
+                'https://drive.google.com/uc?export=view&id=1iw0ZLxGDApzs95HkVIZ4w5MqIGB0UPNn',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Огнестойкая дверь-1":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1S5iKYxSjfrw-P58peAjMci1FbOe-Q220',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1u1ceDa6Qa3F2HVqofU5EkKN30fi6Usw7',
+
+                'https://drive.google.com/uc?export=view&id=1Ynz0nk24rQdq5OuE6IyjBOR4-7KvPXla',
+
+                'https://drive.google.com/uc?export=view&id=1Fx_MPdan1Gf4XinhXRmHKuJXEmO_sYsM',
+
+                'https://drive.google.com/uc?export=view&id=1G4PT_g6N0-ssAcz4TGduJPSp9kfVOlQE',
+
+
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Двери_наружные прислонно-сдвижного типа":
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1i-e5k96oGl2qn5cGXjD2q_9rrhqxcGcE',
+
+
+                'https://drive.google.com/uc?export=view&id=1l-kXJV_hRVuJiAIqHnFSkLpIabVnHZ1Q',
+
+                'https://drive.google.com/uc?export=view&id=15gYbfgYB_i-20I3hxRaHo0yrciBqqGu-',
+
+                'https://drive.google.com/uc?export=view&id=13EPvUqIh3YZjPniQJkbe0vUe9G6Lhdfs',
+
+                'https://drive.google.com/uc?export=view&id=1VvY4DeZY6HBnyDNglng2_2L9x_kzYxZ7',
+
+
+                'https://drive.google.com/uc?export=view&id=16TWuBv4aecBSeZZm3lFFlwwM3EpKIM-8',
+
+                'https://drive.google.com/uc?export=view&id=1louXZBPpzoB5gNMHT3ya0I9gi5OU6I6n',
+
+                'https://drive.google.com/uc?export=view&id=12wpqZBYfe9V3rNxpRPaRsuFao0hWqBlU',
+
+                'https://drive.google.com/uc?export=view&id=1eqGMiV8u9JrjaGwxVB6dpb6zu8KwelN7',
+
+                'https://drive.google.com/uc?export=view&id=1bztzOic1dmqP2lYkuMQsJ4nwK8KI2F5W',
+
+                'https://drive.google.com/uc?export=view&id=1EX4kXPJg2yRQ6GxOi7Kfp_XffbLO5VBD',
+
+                'https://drive.google.com/uc?export=view&id=1-RlkCFik2vbUUCmFKolZLh4198Kfwq7_',
+
+                'https://drive.google.com/uc?export=view&id=1i8YCKsZmu6K8zSRsQP0nDivobt0cIe_z',
+
+
+                'https://drive.google.com/uc?export=view&id=1mWFexNeoMvoSVPOR6oKe2gIPlVQaABve',
+
+                'https://drive.google.com/uc?export=view&id=1BsGWPFjeIfAlubI_67LjfHRCcYc2bZBG',
+
+                'https://drive.google.com/uc?export=view&id=1W3cL_NyrWwlsmmbpxcR4wvzwIqmxYmbh',
+
+                'https://drive.google.com/uc?export=view&id=1fEinHOA0cxzg6HKqOWk7FT6Fd0yi-4AY',
+
+                'https://drive.google.com/uc?export=view&id=1A8lO-saH5lC5q9xM8RWgNRPm1va8EPxh',
+
+                'https://drive.google.com/uc?export=view&id=1VGDeLy5IbmQqGr0VbT2nL27LOJsnxAe1',
+
+                'https://drive.google.com/uc?export=view&id=10IVW5eFQe0R0m7q7E1LAOsC0gJuzQhVw',
+
+                'https://drive.google.com/uc?export=view&id=1wuI2FcUfVKmBtZT9_sPSn_SSmDP1bRmo',
+
+
+
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Моторно-редукторный блок":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1Z7f7mRyYmxDEB2rO50FMmE60Y7saETQ-',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1-fXCNKX1BxzzfvNTsbjv2AncvxLImpF_',
+
+            'https://drive.google.com/uc?export=view&id=1Fe6IdM7UwUt35yHczxbcTi1kRWQ4XN_A',
+
+            'https://drive.google.com/uc?export=view&id=1KrM42mVuE05tgCAgg4jTDtO9Peb8bLbS',
+
+            'https://drive.google.com/uc?export=view&id=1e6L2pqThc9deuAcvWBf4aD-ondm3evxM',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1d4JmkUUiz6dUgCm1pbzYU3po8W3VGRcg',
+
+            'https://drive.google.com/uc?export=view&id=1h7Q4ifWP5WzwhfYCxSHlMh72SCw6MjKh',
+
+            'https://drive.google.com/uc?export=view&id=1kLeEQHozMy1cQxeo1c0TPGCdxZyp15eU',
+
+            'https://drive.google.com/uc?export=view&id=14dp2aLiihe72rt59sou0CD39F9HlJCLa',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1Jf49VZ43aA2NtsqJfwm0aRLULwX8Q3-e',
+
+            'https://drive.google.com/uc?export=view&id=11482FUE4_k_S-gzio4F__uAWW9Fr5LtJ',
+
+            'https://drive.google.com/uc?export=view&id=11482FUE4_k_S-gzio4F__uAWW9Fr5LtJ',
+
+            'https://drive.google.com/uc?export=view&id=1kMcYLSUprCcWx40oSPqU-58W_V1jjO7j',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1vX71WPreXFNQ1rA1oCKWP6es6xEgJQwQ',
+
+            'https://drive.google.com/uc?export=view&id=1SgKsZT4Uy7GdUVsrBGyGFwRUaK36Ap0a',
+
+            'https://drive.google.com/uc?export=view&id=1etU3Ak9EN6do5rSYep9PjI7RAH4Xe_u7',
+
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Половины межвагонных сцепок Scharfenberg":
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1dzg5p1Lhng2GHatsryR_BTo4ip8qs4ef',
+
+
+                'https://drive.google.com/uc?export=view&id=12AN0mWDQwNYXR2_1V71fkLOZrDV8oq-z',
+
+                'https://drive.google.com/uc?export=view&id=1KEKIkYiO18TIEK5mK4q3exyTLCK6_MQK',
+
+                'https://drive.google.com/uc?export=view&id=1yAqYtLm3QBCr3sSPf-BCO4Rb3SoLooxI',
+
+                'https://drive.google.com/uc?export=view&id=1bfgArUbvpMN6hNyPNLN43ikn6TQ6YC25',
+
+
+                'https://drive.google.com/uc?export=view&id=1cJ1oNqd7pk4XdLxXQOGharTw6TFk1iA0',
+
+                'https://drive.google.com/uc?export=view&id=12iMX6y5ZAk4hxNGTmNcphVDvHgkRdckm',
+
+                'https://drive.google.com/uc?export=view&id=1p9v04aiMPyqWsb5IS-XH0uQylf5aM9so',
+
+                'https://drive.google.com/uc?export=view&id=1zg4ve5kDl43Dt_U8AK-9YaUvby1CDc5M',
+
+                'https://drive.google.com/uc?export=view&id=1SO3M-3gm4yVUbUzuT7caYjll-dN703z_',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Автосцепка Scharfenberg 520.011":
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1JmJrImwPf6BQCEK8EsAPq5SZ6mK60l_a',
+
+            'https://drive.google.com/uc?export=view&id=16AVNUmqLwC4lobM_FdQWbEFRaAV9RfCX',
+
+            'https://drive.google.com/uc?export=view&id=16AVNUmqLwC4lobM_FdQWbEFRaAV9RfCX',
+
+            'https://drive.google.com/uc?export=view&id=1Rw8qVc2gNm22BugwMhDNag8zdiwM3b4P',
+
+            'https://drive.google.com/uc?export=view&id=1jLE7dcw3bgKZ4hTCvDfzrtb5-ItrxtvF',
+
+            'https://drive.google.com/uc?export=view&id=1X7JjVtvMq4KWehy_7juHW-0dJLV5LwS1',
+
+            'https://drive.google.com/uc?export=view&id=1LVWnUB0fYb2mMJnMaWWdOi6EG24VP8nq',
+
+            'https://drive.google.com/uc?export=view&id=1nahaFbOBdF48jkUvsS_PZ6C2EKflqmWp',
+
+            'https://drive.google.com/uc?export=view&id=1WtXeWa2z5CcFTI1vIiDiCIaJwJIIGkwe',
+
+            'https://drive.google.com/uc?export=view&id=1p8mxxlA3o8SH_dF9YhwvftQ5SKPXwFsh',
+
+            'https://drive.google.com/uc?export=view&id=1p_bPwnszdpbfzSdz_OwgkNpdjM0adiEy',
+
+            'https://drive.google.com/uc?export=view&id=1IvhKoaBKzWJ0CKg6MxKFn-qRzhX92PT9',
+
+            'https://drive.google.com/uc?export=view&id=1f43zmgO_oDWgf5IuZK7WZdP7HZt705j4',
+
+            'https://drive.google.com/uc?export=view&id=1AMclmbTam9R_vigTaNFuRPCeaj-C6T2c',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Мегалит":
+
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1_jmDysKrYVccWH1C25MeG3y96S7r5PnB',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1TFz4HQHZzGUzgq2gYKQ-DdjNE-UKVt6C',
+
+            'https://drive.google.com/uc?export=view&id=1bwGjgzHImIutC9js-dymKNoiV9ybb5LH',
+
+            'https://drive.google.com/uc?export=view&id=1BFvdwAxalZi6IHict9gmBkzw-rDr7OZi',
+
+            'https://drive.google.com/uc?export=view&id=1iTf_JJHkslyG5aMxiG3jLgvStzQeEKPT',
+
+            'https://drive.google.com/uc?export=view&id=1bgi6ju4Dh_H0e5cfUHP031bY6NoDQiWV',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "СОК КМ":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1zgqWAEBWBZd371CV6Ht7OIxx0_vOffqd',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1_fq0kjWUVn59OuQMLNsrkm1yQE8hYRac',
+
+                'https://drive.google.com/uc?export=view&id=1s6qz4Vs_3-BP8V3IMM9up9DJZKeQlIv2',
+
+                'https://drive.google.com/uc?export=view&id=1-HdazKjCKDwbUSwyDIdfpXTuhUYuLm-w',
+
+                'https://drive.google.com/uc?export=view&id=1coggWeqAaaGpoiZoyrtzu5dVHPlQgVvn',
+
+                'https://drive.google.com/uc?export=view&id=11DD1izOpOsmONr77tSGJZljSMJ2FePUT',
+
+                'https://drive.google.com/uc?export=view&id=1xPA_QeOullFS0GxXIVf2L1oRElCWyAZG',
+
+                'https://drive.google.com/uc?export=view&id=19TXcygsZ0fvS3JNK10efY5-gCD7svtvu',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "ЭКОТОЛ-В_":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1ftJvocD-B2fQRnhQls8EoEGWSWTkImp3',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1bmy99Wp8_ajBa7rZ5bj2RIM6czNpjgVH',
+
+                'https://drive.google.com/uc?export=view&id=1o8YCtGOqstSvqIVb5g0kJtR9gwgZW5nu',
+
+                'https://drive.google.com/uc?export=view&id=1Ur7RsyfRlyO_HIw4_jUYUzy0FektBtEb',
+
+                'https://drive.google.com/uc?export=view&id=1itVzVN0KZj9omxK2Oenk_HIdODT91Re-',
+
+                'https://drive.google.com/uc?export=view&id=1tXwwQ7-HhZLmxJQfhHwTuEiNQjY-xGtt',
+
+                'https://drive.google.com/uc?export=view&id=1X3oNyvRSI3YPgY7y1Wy-2BN7VauPowHp',
+
+                'https://drive.google.com/uc?export=view&id=1AWSiCAymR6h8qZkY-mvFagPFPmOXnb_b',
+
+                'https://drive.google.com/uc?export=view&id=1wyLZ8oCp1lFh4s2MGxmSJfon-WDP-dKH',
+
+                'https://drive.google.com/uc?export=view&id=11etkrVLT9_JEaH93fMZwVbVnNtKEsUKj',
+
+                'https://drive.google.com/uc?export=view&id=1--dfEn6smytmh42wf46njcUNqWmkljzp',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Микроклимата Тракс":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1wDQo9UNbId8LjohBSAeGANX85QQh3YaP',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1SXrQ7-tniDdan2foMjJcIx2ADlW5s9PJ',
+
+                'https://drive.google.com/uc?export=view&id=1NQ2EwjqW3gHjf8eyTHkcqu0FoWemOzHp',
+
+                'https://drive.google.com/uc?export=view&id=1AwmeL_4jJZwXXvHNtpciG1nuAzwfUbXB',
+
+                'https://drive.google.com/uc?export=view&id=17-apkJI7wQ7HZE0HlHCGS_7MytwE9uF7',
+
+                'https://drive.google.com/uc?export=view&id=1WdMdLmdCDhcTudieyrNWErY3lh_zVN7j',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Микроклимата ГОРИЗОНТ":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1r5igLFY8gECsHd6len-m-EQdRtnWlKlH',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=13ssavtxFKeHEyvkgktnyDrZlE2WPGckM',
+
+                'https://drive.google.com/uc?export=view&id=1IwGoTfPiZjj7-BjSEhYVBKL7Xyjea3no',
+
+                'https://drive.google.com/uc?export=view&id=1mInTMo43tp2BKhmDy9fV11kS9XMYzA4Y',
+
+                'https://drive.google.com/uc?export=view&id=1OhdiaWvZj3kPgmeHnE_wrMdu652g_kYp',
+
+                'https://drive.google.com/uc?export=view&id=1R60-pUq__EFOXYe0PF7-oqOkcFaA7hKl',
+
+                'https://drive.google.com/uc?export=view&id=1sl46hX6g5SpIJmOGuwpLnHQWEmSvyLHv',
+
+                'https://drive.google.com/uc?export=view&id=1aVG_kxQHmgcoCbzT7BrEayRetRc57uJp',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Механизм носового обтекателя":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1QDiWy9BGS3OJWuGpKwjahTCGo7M2o1gZ',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1n5VUSOCpKb088c22nsBaoct7xCOyduY4',
+
+                'https://drive.google.com/uc?export=view&id=1Exum8EZ_MlB547P4B9ux-NnCR0jo6Yoh',
+
+                'https://drive.google.com/uc?export=view&id=1HRciyLn-3FrgYRTUREiYW03DHOq4rhcb',
+
+                'https://drive.google.com/uc?export=view&id=11DF9Vqy6geM74hkpgjQqz0eWUg86H8TI',
+
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "дверь_сдвижная туалета":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1o_7xxiBwVlUgho3r2C0zmHo7rSf68fwS',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1oSBH4ANtA5drKq4CIptuxCuhNUiRVihy',
+
+                'https://drive.google.com/uc?export=view&id=1fiR8TEKLVjskLQRi6XUVdr8GRCiZqNfL',
+
+                'https://drive.google.com/uc?export=view&id=1Qn4E1Zu2IIqB1rXPaXnDsyejRkdNXRzP',
+
+                'https://drive.google.com/uc?export=view&id=1AMpgwNxn737KewcTZiynUzshZ6F1Zcz0',
+
+                'https://drive.google.com/uc?export=view&id=1jIwuzHcngDbIqXZhPK8FqXAvhIj3mPGf',
+
+                'https://drive.google.com/uc?export=view&id=1R9Kw73ojBiSplKqQIRu3e2LzP7J3kcW7',
+
+                'https://drive.google.com/uc?export=view&id=1heVrkmr6W-bS2KJF04REN4nPjnqamc3N',
+
+                'https://drive.google.com/uc?export=view&id=1wQAmseimI8hF3K6wEwGLg4pNYF6eUzjD',
+
+                'https://drive.google.com/uc?export=view&id=1t4eNOLaRZGXmvpPgZAqkj-7XUohvveZV',
+
+                'https://drive.google.com/uc?export=view&id=1gnr8sQWbAKGc4Ly0p5PlCn0sEQ3AF_5L',
+
+                'https://drive.google.com/uc?export=view&id=1dZf7ek5kgP5kHqAsHpUiaWGYIO4wZ6ec',
+
+                'https://drive.google.com/uc?export=view&id=1s6yLQuhmtHpWiyFPmpcawMlRe25RIswa',
+
+                'https://drive.google.com/uc?export=view&id=1Vf9CscLSOzTFw-ZnprqcvkswFPxpE811',
+
+
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Пневморессор":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1dBQDfBs3lJM7LuGfFjlUFcJymuzmBXkd',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1F31MQyuHNbMscCfjl9Xjge4l-pOSfdSc',
+
+                'https://drive.google.com/uc?export=view&id=1XREzKsI40AvVbjenWbHWF6zBJsYKFVjc',
+
+                'https://drive.google.com/uc?export=view&id=1qvsJ6S8LiKuZLC7EUJ_QscCtNGbmDuNd',
+
+                'https://drive.google.com/uc?export=view&id=1-yEufHSsp4v62vhY1_gGzgnr29Gtfn8H',
+
+                'https://drive.google.com/uc?export=view&id=1MRLcm_gw27BQ7B9qFeaUUqcPBzOVAY9T',
+
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Торсионный_стабилизатор":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1LgSscqRXDlmUnaGpIx1QcmedMK_fWnoU',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1BvBwXaEnRSPDUwboEyNCF3kcQiw04q2Z',
+
+                'https://drive.google.com/uc?export=view&id=1d2CLKec4U3eAobp9jBI-3ndJNPk210sy',
+
+                'https://drive.google.com/uc?export=view&id=1AqmpAz73AmnKYoGPgSonNNpqr6rAOh52',
+
+                'https://drive.google.com/uc?export=view&id=1B8rpyO34KEOudCrUU-Z0t-7a4jvY5phz',
+
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Рамы тележек":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1RNRvj2QAx482bP-hMybzagENs49o6gB6',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1Ma1R7rnolA7Tvro9NObAntJqDx7c99IR',
+
+                'https://drive.google.com/uc?export=view&id=1WcEyNbuBW7D0MXxUwNV_2HIJTjvtixb3',
+
+                'https://drive.google.com/uc?export=view&id=1-XhcY-F1ySlHKMslGP4DCxShLVancRX7',
+
+                'https://drive.google.com/uc?export=view&id=1d2sCucGCRYaSFeYZbRfUAocnNgtunyKi',
+
+                'https://drive.google.com/uc?export=view&id=1JJB7NWzeFsl4omzB09k9MHfxyBNgOjZR',
+
+                'https://drive.google.com/uc?export=view&id=1Lu4h-nguJg3skX1PBrjrRgcZo68A1GW0',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Гребнесмазыватель_АГС 9":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1jdOSg-bYtWV6glT1AT8Nc0c9E5ZN0rzi',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1eLAK6Z26LZnPME1m8YqLB7HwpTwDjbur',
+
+                'https://drive.google.com/uc?export=view&id=15yDD9RSSo5mpW7D4VihZjCYdMXyTplgW',
+
+                'https://drive.google.com/uc?export=view&id=1QStoLpgnKSh1NCuhtZyiALW34xtIGXPy',
+
+                'https://drive.google.com/uc?export=view&id=1ioR1hmB0johOV9ZNc-yfc6ClzrQD3IeY',
+
+                'https://drive.google.com/uc?export=view&id=1U4NKeAcH7cX4FLDNCsZ2VpRTCGd5p-TQ',
+
+                'https://drive.google.com/uc?export=view&id=1c0TC7EWt3GFB6kMfl7AUiey1q26f5nup',
+
+                'https://drive.google.com/uc?export=view&id=1pLnkHSxWPumrybXIN8OMOm3mRoNt8_OF',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Токоотвод_УТ-02 У2":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1Q1tSsgtwI7i0jKPb9Ly6S2aXlh1NomnT',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1FP97ePIap7ttBuekYNQzZMoUTEqHxFl9',
+
+                'https://drive.google.com/uc?export=view&id=18P7ViFwLB3Mx26i4sWL-qHfPJrwW0fjA',
+
+                'https://drive.google.com/uc?export=view&id=1s_O12NEQaQyUmEerA_SYK7u_ucpm4RjN',
+
+                'https://drive.google.com/uc?export=view&id=1F_4lH-Z-ruei5eeU97ty3gWPJLK-y2cB',
+
+                'https://drive.google.com/uc?export=view&id=1yOmR4hHFx875zKIIKP_Y9QIFlkCWej3k',
+
+                'https://drive.google.com/uc?export=view&id=1KtrSkPn8LmV5GrukpjdlZMARDwwQAO72',
+
+                'https://drive.google.com/uc?export=view&id=1lYTW7FyvHRCiYV9VcRXuZw8I3RXGsp0I',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Наружные_боковые двери кабины машиниста":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=13JwtgR6VlUGb-Z1DHu077QyB2Rtj9qKa',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=19gevGGh8pn4FPL16jOlcPTv3jKzNXW84',
+
+                'https://drive.google.com/uc?export=view&id=13W3y4aqxuKID2R-_HMaYoIL9isyhftHl',
+
+                'https://drive.google.com/uc?export=view&id=14gi7nHFHsF2aIKUYXo8Zv77WvQe6OU_X',
+
+                'https://drive.google.com/uc?export=view&id=1Vp_W7NfjxPfEKoBJfV7nKj4doMzxM3oZ',
+
+                'https://drive.google.com/uc?export=view&id=1WCO-01zCyAB_U20bodPQ-YBER_r6oDsc',
+
+                'https://drive.google.com/uc?export=view&id=1vj11fFriw2HFAImvf-z5gi1nyMOrcZ6-',
+
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Полуавтоматическая_сцепка 1049567":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1pe8ukQ484dSNQJWhLMgMEXQXdpp-Zfiw',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1HVG7R8OZ2SU-f8kw2del1kiabbSMvVjO',
+
+                'https://drive.google.com/uc?export=view&id=1ahWg0InzQ5j1JDIYi1nGpFdBVSQ9reAp',
+
+                'https://drive.google.com/uc?export=view&id=10XYJayTZNubtx5II-lJocPQ3HZOzvVKa',
+
+                'https://drive.google.com/uc?export=view&id=1LuWy9Y2x793Kpg5FE6fpulqekZhea3Y1',
+
+
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Кузовное_оборудование":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1zAzSe6DEq4u8vn7qshm3NSe6C0VJhR_x',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1Yh1zZsQnf4tBd1YKii1DNfg6gOngf3-X',
+
+                'https://drive.google.com/uc?export=view&id=1gjM5vV32IcbZEK3Ncsf7ydL346o3gKie',
+
+                'https://drive.google.com/uc?export=view&id=1zaGR6pb8DotZAtN6seFVQ9z0sEBzm5Jq',
+
+                'https://drive.google.com/uc?export=view&id=1owFcK_5LQrJ6N4aUK4ZAdstlwWTeWths',
+
+                'https://drive.google.com/uc?export=view&id=13-WWsOJbkG96bjpJ4AC2RCoENozb0fMg',
+
+                'https://drive.google.com/uc?export=view&id=1ZN2Hxe0PeQzfpGBZKHwZI0R5ij3ZBY_A',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Входной_дроссель ДВ-35М1":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1szZAMCv6I-qg9_tI_KZ4M4QCVb7T4B8I',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1JQw4brtSsP8eRhUqR9hO52-fisiSxoa4',
+
+                'https://drive.google.com/uc?export=view&id=1qgGpnONrY69D1enZ_a8OavOQJo1JGX3t',
+
+                'https://drive.google.com/uc?export=view&id=1jt41duFsbXgutsc3cq1ds44PdZo1bSSS',
+
+                'https://drive.google.com/uc?export=view&id=1RUoGSOKw_lY3RIqAgT6eIVNICvFyf_eJ',
+
+                'https://drive.google.com/uc?export=view&id=1Qj-fKiCnLURqN-4udOQwIabrtUv9tzQT',
+
+                'https://drive.google.com/uc?export=view&id=1XSJTqX-X6TqY0PLGC_J0pBROyW-yXS6Z',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Межвагонная сцепка ТМ152":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=10ivLOiS8VdJjE6ZerU9byoA8AYlC2bfD',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1SXxOaF15-u97EvxTiy5DoDeUcqGbl9vj',
+
+                'https://drive.google.com/uc?export=view&id=1qc0__pC03tc_h_Jn-hNOig6Fc5EOV28T',
+
+                'https://drive.google.com/uc?export=view&id=169z4WQjs0_Cxrkd8KXnP-oE4P7TUHTUH',
+
+                'https://drive.google.com/uc?export=view&id=1-jZGFjtaHCqECmpNVMMkxSOCpXoTtTwr',
+
+                'https://drive.google.com/uc?export=view&id=1sNJD70hmSSCjSlpk3inxmM-QGQDhTaMt',
+
+                'https://drive.google.com/uc?export=view&id=1T8Hwsc3WSqYzWmeKaDNvlnbvsM18RsT8',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "ПСН-200-01-У1":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1_985xkggMmp5OPEWoV-DWbTUx4-HPcs_',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1k20ndh5ojjE4EJJlXcHbhT5QhedL3YNp',
+
+                'https://drive.google.com/uc?export=view&id=1WloSCxkr3RqyUpZwLLnNOseuQDCd2Bp8',
+
+                'https://drive.google.com/uc?export=view&id=1hF6IsI5U7PLekt1NRBHSfCdX062L5IMu',
+
+                'https://drive.google.com/uc?export=view&id=1l1SYSAuHpEvtIM4CL1miXcV2tBtGluul',
+
+                'https://drive.google.com/uc?export=view&id=1Ss_IhfaThKNfnoSW9UeYCaHg2X_zthXN',
+
+                'https://drive.google.com/uc?export=view&id=10R0Vy8jSub0ciz3_XcXsKTSOJMc53S4n',
+
+                'https://drive.google.com/uc?export=view&id=1x_xtfqN7Kgha6SbUDT73CIhWuq2l4e6P',
+
+                'https://drive.google.com/uc?export=view&id=1hZrLMoej_t2mfQboWutB8qKfBzMCdUkv',
+
+                'https://drive.google.com/uc?export=view&id=1_qhTNGE4Gty4xqLjHAzSGePW2C-4JJCZ',
+
+                'https://drive.google.com/uc?export=view&id=1Ga4SaqxPQxpe4aBJwyFR0ms73Rssm5US',
+
+                'https://drive.google.com/uc?export=view&id=15y0psZ3TojoUnT5cuDAnh0RYhbieytmc',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+                # Создаем клавиатуру с кнопкой "Назад"
+                keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+                button_back = types.KeyboardButton("Назад")
+                keyboard.add(button_back)
+
+                bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Агрегата компрессорного поршневого безмасляного АКПБ 0,070,7 Л У1":
+
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1qu-7O4XZd6OlHBWRiPuiyTQIK1GK4j_y',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1MRpAVrxbKmKeDEpSjFhZ6rQh10YTKEDg',
+
+            'https://drive.google.com/uc?export=view&id=1_dtN80wDgp_dqM56Kgf44WIhgwn3HMs5',
+
+            'https://drive.google.com/uc?export=view&id=1LH0Hsk_F-8uoEDZMVhig5ljgCHOL9hXL',
+
+            'https://drive.google.com/uc?export=view&id=1yX37ZyJk4fraNW0oTEjYm_Z4nBUUHjIW',
+
+            'https://drive.google.com/uc?export=view&id=19ZlXh7uyYc9VdxV29gny_0DtxjKj9-hT',
+
+            'https://drive.google.com/uc?export=view&id=102BaDY4zC7ogKIsxtRbcl3qsSlALBk1a',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+        # Создаем клавиатуру с кнопкой "Назад"
+        keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button_back = types.KeyboardButton("Назад")
+        keyboard.add(button_back)
+
+        bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Компрессорная установка-выход":
+
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1W8A8ozZ74S4CdeZj-GQ9sZOywc2f1oIx',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1H_TisyDr4ivcgbS0cNSEBiDhKaPqdIV3',
+
+            'https://drive.google.com/uc?export=view&id=1HaQTC2G54BthL9_hUhTPK7gaUO3RQa3D',
+
+            'https://drive.google.com/uc?export=view&id=1ggeJ-YF5-V06YqF7d5_Pj_07RvOCEOGJ',
+
+            'https://drive.google.com/uc?export=view&id=1iLY6Uar4VhXtrRNo6VFcLDHHBHBjNTrp',
+
+            'https://drive.google.com/uc?export=view&id=1jYRFPGXeX5UHvjkX1Tjz0L9Gu2fxiUb7',
+
+            'https://drive.google.com/uc?export=view&id=17bEr25lLiEzjGvcmrEjeW4oxctITkFUo',
+
+            'https://drive.google.com/uc?export=view&id=1XxTmRnTBDa0539fDz35AApP170M1Ff9-',
+
+            'https://drive.google.com/uc?export=view&id=13DJiu4fcVQP98KkZCRxFbVVnTri-2FNT',
+
+            'https://drive.google.com/uc?export=view&id=1OyNVyy66Iexz1OEpyJYLNCwZc_LB9bZ-',
+
+            'https://drive.google.com/uc?export=view&id=1V76fnHXMqeI4wCgIg51WZ-xEUuvgToAt',
+
+            'https://drive.google.com/uc?export=view&id=1F1PbD_yP3-qOa7dhit5ZjwY9_VpPq_M4',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Тифон Свисток":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1tZhKMn2MZH62GUWmvxovBIbic0C-5xTa',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1WRF-PgLPqxlEn0WzkTvUWT0H472pd1-m',
+
+                'https://drive.google.com/uc?export=view&id=1RFxPEL1rFxT-Fpn79-GcOF7CJcj76cGX',
+
+                'https://drive.google.com/uc?export=view&id=1uJuo_PlO-kQfX8vXRE5K58SjcpeL01DI',
+
+                'https://drive.google.com/uc?export=view&id=1C6MPPPbBQk0Uc6q4RSUOg10EfodZJ_j1',
+
+                'https://drive.google.com/uc?export=view&id=1amhB9Bhj4s-PEqbtnXIDVbTkgYNnffPT',
+
+                'https://drive.google.com/uc?export=view&id=1hJlFMEgdguJsIPtAK68bQ058NWobMT-z',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Пневматическое оборудование":
+
+        # Прямые ссылки на изображения с Google Drive
+
+        urls = [
+
+            'https://drive.google.com/uc?export=view&id=1qfGrk0jtJh0KfMkFxq-WVKEfVY8eTubM',
+            # Замените на ваши прямые ссылки
+
+            'https://drive.google.com/uc?export=view&id=1nyp6sTVjN58N7dmgUCtlXUpVD1FdzuqV',
+
+            'https://drive.google.com/uc?export=view&id=1Z9-k6RyuocZH63TMdR-9BSf4IBJtW3xY',
+
+            'https://drive.google.com/uc?export=view&id=14Syd7kHDMpZhnMHvous32Yo6KHhUF3p9',
+
+            'https://drive.google.com/uc?export=view&id=1cTn4rtsj5orXUb8t4fcDN_5MCdDzAtk3',
+
+            'https://drive.google.com/uc?export=view&id=1thyaq1iTO-6djjZylsF9PmY9IXd0hVah',
+
+            'https://drive.google.com/uc?export=view&id=13c32VG7tHRj8eerkS-a1C3vomMvCJvas',
+
+            'https://drive.google.com/uc?export=view&id=1Jkx71YyYSbEHwh6hbj7cfTB4MpIuthVp',
+
+            'https://drive.google.com/uc?export=view&id=1ZjpUNteQjZmWat5n99NX5H5FlwbWW2PW',
+
+            'https://drive.google.com/uc?export=view&id=1ep_-VAmAOrEVdsqSHK9gRxp523ssRLtU',
+
+            'https://drive.google.com/uc?export=view&id=1Y1OeDCyV9MqiQKPOreUjiK3ku10CjJQs',
+
+            'https://drive.google.com/uc?export=view&id=1oRbQCq0ePnMmmsUG2OUEgrazB4rmAg3_',
+
+            'https://drive.google.com/uc?export=view&id=18WVYCEidWvmREONqNkmq346lbmin09QB',
+
+            'https://drive.google.com/uc?export=view&id=124qiOfBSnFGaai6TdfdjTCLdBBvfiRfe',
+
+            'https://drive.google.com/uc?export=view&id=1ZKqBsRRy3oQACwg_OfSfLSC-F-9dwhrM',
+
+            'https://drive.google.com/uc?export=view&id=1OVvOm2DUVwDCiuVNQaplStlTf_rP41S2',
+
+            'https://drive.google.com/uc?export=view&id=16AMEwiSbRrjN3rQv-xReqzAiH8EK0kZ9',
+
+            'https://drive.google.com/uc?export=view&id=1ORs0cnVlfUw1vSRZ2OjgeM-sdN49nI4_',
+
+            'https://drive.google.com/uc?export=view&id=1rMRR3lvKhnytLaWQY9LaKPJAKo7uk4Pm',
+
+            'https://drive.google.com/uc?export=view&id=1WouNrXAnmWERIRUoE7btKI2OEwRlcMOG',
+
+        ]
+
+        for url in urls:
+            send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+    elif message.text == "Тележки_68-4115 и 68-4116":
+
+            # Прямые ссылки на изображения с Google Drive
+
+            urls = [
+
+                'https://drive.google.com/uc?export=view&id=1cXGmKhY4Ort81R9FA6NSuJ38-tboa1h3',
+                # Замените на ваши прямые ссылки
+
+                'https://drive.google.com/uc?export=view&id=1SilK1rNn3KiHDIznNh-cIUt6nunwhpe3',
+
+                'https://drive.google.com/uc?export=view&id=1W8xY482vc7jPmTjTnK6BfcCuR5EWQW9X',
+
+                'https://drive.google.com/uc?export=view&id=1vymFQMBfmZKXzO2H93hsHmJGhkc_R_qU',
+
+                'https://drive.google.com/uc?export=view&id=1PW7RdgsYp73oCVe_HJnIjKTfL_B7eWs0',
+
+                'https://drive.google.com/uc?export=view&id=1-Xej3yG-P5ISVWOyvaE9BCP6WuQtiXoJ',
+
+                'https://drive.google.com/uc?export=view&id=1z6HRPgPZtANXEeFFdkv8kZjfar9Kundv',
+
+                'https://drive.google.com/uc?export=view&id=1tyARM-skFMYgxc04-1HNxyAs-cazEirQ',
+
+                'https://drive.google.com/uc?export=view&id=1rrSZZY3Bvp0HzY66QeeL0vjCeXeawPE_',
+
+                'https://drive.google.com/uc?export=view&id=1cFvkLVekX-aDblF6K2qFcnr7xQG_Pn3-',
+
+                'https://drive.google.com/uc?export=view&id=1S9c_jdRDp5vEpyjh-Yh9ENNcWHk1BCES',
+
+                'https://drive.google.com/uc?export=view&id=170M_SYB4jiZn9NvREl4Xd8U0C9_tAoCr',
+
+            ]
+
+            for url in urls:
+                send_image_from_url(message.chat.id, url)
+
+            # Создаем клавиатуру с кнопкой "Назад"
+            keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            button_back = types.KeyboardButton("Назад")
+            keyboard.add(button_back)
+
+            bot.send_message(message.chat.id, "Выберите одну из кнопок ниже:", reply_markup=keyboard)
+
+
+# Запуск бота
+bot.polling(none_stop=True)
+
+
+
+
+
+
+
+
+
